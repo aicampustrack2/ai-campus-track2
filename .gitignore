@@ -1,0 +1,192 @@
+# ============================================================
+# ai-campus-track2 공용 .gitignore
+#
+# 이 저장소는 공개(public)이므로 "실수로 올라가면 되돌릴 수 없는 것"을
+# 가장 먼저 막는다. 위에서 아래로 위험도 순서.
+#
+#   ┌──────────────────────────────┐
+#   │ 1. 인증 정보 (키·토큰·상태)  │ ← 유출 즉시 금전 피해 가능
+#   ├──────────────────────────────┤
+#   │ 2. 대용량 파일 (모델·데이터) │ ← GitHub 100MB 제한
+#   ├──────────────────────────────┤
+#   │ 3. 언어·도구별 빌드 산출물   │ ← 커리큘럼 기술 스택 기준
+#   ├──────────────────────────────┤
+#   │ 4. OS·에디터·문서 임시 파일  │ ← 개인 환경 흔적
+#   └──────────────────────────────┘
+#
+# 예제용 설정은 .env.example / *.example 처럼 이름을 바꿔 올린다.
+# ============================================================
+
+
+# ------------------------------------------------------------
+# 1. 인증 정보
+# ------------------------------------------------------------
+# 환경 변수 파일 — 예시 파일(.env.example)은 공유 대상이라 다시 허용
+.env
+.env.*
+!.env.example
+
+# SSH·TLS 키 (EC2 접속용 .pem 포함)
+*.pem
+*.key
+*.ppk
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# AWS 자격 증명
+.aws/
+credentials
+*.csv.credentials
+*_accessKeys.csv
+*_credentials.csv
+
+# Terraform — tfstate 안에는 리소스 비밀값이 평문으로 남는다
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Kubernetes 접속 정보
+kubeconfig
+*.kubeconfig
+.kube/
+
+# 기타 토큰·비밀값 파일
+secrets/
+*.secret
+*.secrets
+.netrc
+.npmrc
+.pypirc
+
+
+# ------------------------------------------------------------
+# 2. 대용량 파일
+# ------------------------------------------------------------
+# LLM·ML 모델 가중치 — 내려받는 방법만 문서로 안내
+models/
+*.gguf
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.h5
+
+# Hugging Face·Ollama 로컬 캐시
+.cache/
+hf_cache/
+
+# 대용량 데이터·벡터 DB 로컬 저장소
+data/raw/
+*.parquet
+chroma_db/
+*.sqlite3
+*.db
+
+# 압축본·디스크 이미지
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.iso
+*.ova
+*.vmdk
+
+
+# ------------------------------------------------------------
+# 3. 언어·도구별 산출물
+# ------------------------------------------------------------
+# Python (Conda·FastAPI·Jupyter)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.conda/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Node.js (바이브 코딩·MVP 프로젝트 프런트엔드)
+node_modules/
+.next/
+.nuxt/
+.vite/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Java (Gradle·Maven)
+.gradle/
+target/
+out/
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# 로그·임시 출력
+logs/
+*.log
+tmp/
+temp/
+
+
+# ------------------------------------------------------------
+# 4. OS·에디터·문서 임시 파일
+# ------------------------------------------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+._*
+
+# Linux
+*~
+.directory
+
+# 에디터 (VS Code·Cursor·IntelliJ) — 공용 설정을 공유할 땐 해당 줄만 지운다
+.vscode/
+.cursor/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# Office·한글 문서 작업 중 생기는 잠금 파일
+~$*
+*.tmp
+.~lock.*#
+
+# draw.io 자동 백업
+*.drawio.bkp
+.$*.drawio.bkp
