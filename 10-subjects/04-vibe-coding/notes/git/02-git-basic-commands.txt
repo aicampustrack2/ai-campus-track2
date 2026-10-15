@@ -1,0 +1,51 @@
+1. 전체 흐름
+                            git add                  git commit                         git push
+        작업 폴더           -------->  스테이징 영역   ----------->   로컬 저장소        --------------->      GitHub 
+    (working directory)               (staging area)               (repository = .git)                 (remote,origin,원격) 
+
+
+2. git init 
+    1) 특정 폴더를 저장소로 만들기 
+    2) .git 폴더 생성
+        - 저장소의 본체
+        - 모든 커밋 기록이 이 안에 들어 있으니 
+          직접 고치거나 지우면 안됨    
+
+3. git status
+    1) 상태 보기 
+        - On branch main
+          No commits yet
+          nothing to commit    
+    2) Untracked 
+        - Git이 아직 관리하지 않는(추적하지 않는) 새파일
+          이라는 뜻임.        
+
+4. git add 
+5. git commit                  
+    1) $ git commit -m "첫 커밋: README 추가"
+    2) 예시
+        [main (root-commit) dcdd312] 첫 커밋: README 추가
+        1 file changed, 1 insertion(+)
+        create mode 100644 README.md
+            - dcdd312 : 커밋마다 붙는 고유 번호(해시)의 앞부분임.
+6. git log
+    1) 지금까지의 기록 보기 
+    2) 커밋 기록 전체 (작성자, 날짜, 메세지)
+    3) git log --oneline
+        - 커밋 하나를 한 줄로 짧게 
+        - 예) dcdd312 (HEAD -> main) 첫 커밋: README 추가
+            - HEAD : "지금 내가 보고 있는 커밋"을 가리키는 표
+       git log --oneline --graph --all
+        - 브랜치 흐름을 그림으로  
+
+7. git diff 
+    1) git diff 
+        - 작업 폴더에서 바뀐 줄 보기 
+    2) git diff --staged
+        - 이번 커밋에 들어갈 변경 보기 
+
+8. git restore
+    1) 마지막 커밋 상태로 되돌리기            
+    2) git restore --staged
+        - add만 취소할 때
+        - 스테이징에서 내리기 

@@ -1,0 +1,20 @@
+1. Git 설치
+    1) git --version
+    2) 엔터 방식 차이로 인한 경고(warning) 메시지 방지
+        - git config --global core.autocrlf true 
+
+2. Git 최초 설정
+    1) Git 전역으로 사용자 이름과 이메일 주소를 설정
+        - git config --global user.name "(본인이름)"        
+        - git config --global user.email "(본인이메일)"
+    2) 기본 브랜치명 변경
+        - git config --global init.defaultBranch main            
+
+3. 프로젝트 생성 및 Git 관리 시작 
+    1) git init         
+        - 숨김 디렉토리 .git 생성됨 
+    2) git status   
+        - 변경사항 확인  
+
+4. .gitignore
+    1) 기록하지 않을(제외할) 파일, 디렉토리 등을 설정하기                 
